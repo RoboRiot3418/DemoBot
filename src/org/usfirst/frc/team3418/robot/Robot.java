@@ -17,7 +17,7 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-	Talon motor1 = new TAlon (0);
+	Talon motor1 = new Talon (0);
 	Talon motor2 = new Talon (1);
 	Talon motor3 = new Talon (2);
 	
