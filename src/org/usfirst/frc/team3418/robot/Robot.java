@@ -44,6 +44,9 @@ public class Robot extends IterativeRobot {
     	x=stick.getRawAxis(0);
     	y=stick.getRawAxis(1);
     	r=stick.getRawAxis(2);
+    	/*
+    	 * this is a comment made by josh
+    	 */
     	motor1.set((-1/2*x) - (Math.sqrt(3)/2*y) + r);
     	motor2.set((-1/2*x) + (Math.sqrt(3)/2*y) + r);
     	motor3.set((-1/2*x) + (Math.sqrt(3)/2*y) + r);
