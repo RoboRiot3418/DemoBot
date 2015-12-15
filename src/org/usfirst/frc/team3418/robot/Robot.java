@@ -4,7 +4,7 @@ package org.usfirst.frc.team3418.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Talon;
-import java.lang.Math
+import java.lang.Math;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -56,7 +56,7 @@ _____.___.________  .____    ________    ___________      __  _____    ________
     	 */
     	motor1.set((-1/2*x) - (Math.sqrt(3)/2*y) + r);
     	motor2.set((-1/2*x) + (Math.sqrt(3)/2*y) + r);
-    	motor3.set((-1/2*x) + (Math.sqrt(3)/2*y) + r);
+    	motor3.set(x+r);
     }
     
     /**
