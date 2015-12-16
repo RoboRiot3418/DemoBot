@@ -58,6 +58,23 @@ _____.___.________  .____    ________    ___________      __  _____    ________
     	 * wjskadjflksjflkjldjfaslkjfalj
     	 * By josh
     	 */
+    	/*
+    	 * + additional coolness 
+    	 */
+    	
+    	
+    	/**
+    	 * dfjalksjfdlkasjflk
+    	 * sdfkjslkajf
+    	 * skdfjlksajfkas
+    	 * 
+    	 * kdsjflaksjlkfjas
+    	 * daksjflsjdlkfjaslkjfklsdjlka
+    	 * jsdlkfjlksajflkasjlkfjasl
+    	 * 
+    	 * What up dawgz?
+    	 * jlkjlkjkljkljlkjlkjlkjlkdkfnasdkfhanklsdfkbjedhsakjbshfjkbfahsk
+    	 */
     	motor1.set((-1/2*x) - (Math.sqrt(3)/2*y) + r);
     	motor2.set((-1/2*x) + (Math.sqrt(3)/2*y) + r);
     	motor3.set(x+r);
