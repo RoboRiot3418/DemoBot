@@ -15,12 +15,12 @@ import java.lang.Math;
 public class Robot extends IterativeRobot {
     /**
      * This function is run when the robot is first started up and should be
-     * used for any initialization code.
+     * used for any initialization code. woo hooo
      */
 	Talon motor1 = new Talon (0);
 	Talon motor2 = new Talon (1);
 	Talon motor3 = new Talon (2);
-	
+	// lol this is a comment this si the new coment
 	Joystick stick = new Joystick (3);
 	double x = 0;
 	double y = 0;
