@@ -3,7 +3,7 @@ package org.usfirst.frc.team3418.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import java.lang.Math;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -17,14 +17,22 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-	Talon motor1 = new Talon (0);
-	Talon motor2 = new Talon (1);
-	Talon motor3 = new Talon (2);
+	Victor motor1 = new Victor (0);
+	Victor motor2 = new Victor (1);
+	Victor motor3 = new Victor (2);
 	
-	Joystick stick = new Joystick (3);
+	Joystick stick = new Joystick (0);
 	double x = 0;
 	double y = 0;
 	double r = 0;
+	double dzc =.2; // dead zone constant
+	
+	public double deadzone(double original){
+		if (original>(dzc*-1) && original<dzc){
+			return 0;
+		}
+		return original;
+	}
     public void robotInit(){
 
     }
@@ -41,40 +49,11 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	
-    	x=stick.getRawAxis(0);
-    	y=stick.getRawAxis(1);
-    	r=stick.getRawAxis(2);
-    	/*
-    	 * this is a comment made by josh
-    	 * 
-_____.___.________  .____    ________    ___________      __  _____    ________ 
-\__  |   |\_____  \ |    |   \_____  \  /   _____/  \    /  \/  _  \  /  _____/ 
- /   |   | /   |   \|    |    /   |   \ \_____  \\   \/\/   /  /_\  \/   \  ___ 
- \____   |/    |    \    |___/    |    \/        \\        /    |    \    \_\  \
- / ______|\_______  /_______ \_______  /_______  / \__/\  /\____|__  /\______  /
- \/               \/        \/       \/        \/       \/         \/        \/ 
-    	 */
-    	/*
-    	 * wjskadjflksjflkjldjfaslkjfalj
-    	 * By josh
-    	 */
-    	/*
-    	 * + additional coolness 
-    	 */
+    	x=deadzone(stick.getRawAxis(4))*-1;
+    	y=deadzone(stick.getRawAxis(5));
+    	r=deadzone(stick.getRawAxis(0))*.6;
     	
-    	
-    	/**
-    	 * dfjalksjfdlkasjflk
-    	 * sdfkjslkajf
-    	 * skdfjlksajfkas
-    	 * 
-    	 * kdsjflaksjlkfjas
-    	 * daksjflsjdlkfjaslkjfklsdjlka
-    	 * jsdlkfjlksajflkasjlkfjasl
-    	 * 
-    	 * What up dawgz?
-    	 * jlkjlkjkljkljlkjlkjlkjlkdkfnasdkfhanklsdfkbjedhsakjbshfjkbfahsk
-    	 */
+    	// these formulas mostly work
     	motor1.set((-1/2*x) - (Math.sqrt(3)/2*y) + r);
     	motor2.set((-1/2*x) + (Math.sqrt(3)/2*y) + r);
     	motor3.set(x+r);
