@@ -49,9 +49,9 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	
-    	x=deadzone(stick.getRawAxis(4))*-1;
+    	x=deadzone(stick.getRawAxis(4))*-1;//this reverses the input
     	y=deadzone(stick.getRawAxis(5));
-    	r=deadzone(stick.getRawAxis(0))*.6;
+    	r=deadzone(stick.getRawAxis(0))*.6;//this slows rotation
     	
     	// these formulas mostly work
     	motor1.set((-1/2*x) - (Math.sqrt(3)/2*y) + r);
