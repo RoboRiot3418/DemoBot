@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.lang.Math;
+import java.util.Comparator;
 
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
@@ -42,6 +43,28 @@ public class Robot extends IterativeRobot {
 		return original;
 	}
 	
+	public class ParticleReport implements Comparator<ParticleReport>, Comparable<ParticleReport>{
+		double PercentAreaToImageArea;
+		double Area;
+		double ConvexHullArea;
+		double BoundingRectLeft;
+		double BoundingRectTop;
+		double BoundingRectRight;
+		double BoundingRectBottom;
+		
+		public int compareTo(ParticleReport r)
+		{
+			return (int)(r.Area - this.Area);
+		}
+		
+		public int compare(ParticleReport r1, ParticleReport r2)
+		{
+			return (int)(r1.Area - r2.Area);
+		}
+	};
+	
+	
+	
 	Image frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_HSL , 0);
 	Image binary = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_U8 , 0);
 	NIVision.Range TOTE_HUE_RANGE = new NIVision.Range(24, 49);	//Default hue range for yellow tote
@@ -64,7 +87,7 @@ public class Robot extends IterativeRobot {
 		NIVision.GetImageSizeResult size;
 
 		size = NIVision.imaqGetImageSize(image);
-		normalizedWidth = 2*(report.boundingBox.- report.boundingBox.left )/size.width;
+		normalizedWidth = 2*(report.BoundingRectRight- report.BoundingRectLeft )/size.width;
 		targetWidth = isLong ? 26.0 : 16.9;
 
 		return  targetWidth/(normalizedWidth*12*Math.tan(VIEW_ANGLE*Math.PI/(180*2)));
@@ -95,8 +118,8 @@ public class Robot extends IterativeRobot {
     	r=deadzone(stick.getRawAxis(0))*.6;//this slows rotation
     	
     	// these formulas mostly work
-    	motor1.set((-1/2*x) - (Math.sqrt(3)/2*y) + r);
-    	motor2.set((-1/2*x) + (Math.sqrt(3)/2*y) + r);
+    	motor1.set((-.5*x) - ((Math.sqrt(3)/2)*y) + r);
+    	motor2.set((-.5*x) + ((Math.sqrt(3)/2)*y) + r);
     	motor3.set(x+r);
     	
     	
@@ -124,6 +147,7 @@ public class Robot extends IterativeRobot {
 		//Send particle count after filtering to dashboard
 		numParticles = NIVision.imaqCountParticles(binary, 1);
 		SmartDashboard.putNumber("Filtered particles", numParticles);
+		
     }
     
     /**
