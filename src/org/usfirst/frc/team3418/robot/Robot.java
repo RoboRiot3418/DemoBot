@@ -20,7 +20,9 @@ public class Robot extends IterativeRobot {
 	Victor motor1 = new Victor (0);
 	Victor motor2 = new Victor (1);
 	Victor motor3 = new Victor (2);
-	
+	double m1=0;
+	double m2=0;
+	double m3=0;
 	Joystick stick = new Joystick (0);
 	double x = 0;
 	double y = 0;
@@ -54,9 +56,13 @@ public class Robot extends IterativeRobot {
     	r=deadzone(stick.getRawAxis(0))*.6;//this slows rotation
     	
     	// these formulas mostly work
-    	motor1.set((-1/2*x) - (Math.sqrt(3)/2*y) + r);
-    	motor2.set((-1/2*x) + (Math.sqrt(3)/2*y) + r);
-    	motor3.set(x+r);
+    	m1=((-.5)*x) - ((.866)*y) + r;
+    	m2=((-.5)*x) + ((.866)*y) + r;
+    	m3=x+r;
+    	System.out.println(m1+"     "+m2+"    "+m3+"    "+x+"   "+y);
+    	motor1.set(m1);
+    	motor2.set(m2);
+    	motor3.set(m3);
     }
     
     /**
